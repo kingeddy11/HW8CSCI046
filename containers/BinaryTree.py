@@ -71,7 +71,8 @@ class BinaryTree():
         elif traversal_type == 'postorder':
             return self.postorder_print(self.root, '')
         else:
-            raise ValueError('Traversal type ' + str(traversal_type) + ' is not supported.')
+            raise ValueError('Traversal type ' + str(traversal_type) + \
+                    ' is not supported.')
 
     def preorder_print(self, start, traversal):
         '''
@@ -120,24 +121,48 @@ class BinaryTree():
         FIXME:
         Implement this function by modifying the _print functions above.
         '''
+        if traversal_type == "preorder":
+            return self.preorder(self.root, [])
+        elif traversal_type == "inorder":
+            return self.inorder(self.root, [])
+        elif traversal_type == "postorder":
+            return self.postorder(self.root, [])
+        else:
+            raise ValueError('Traversal type ' + str(traversal_type) + \
+                    ' is not supported.')
 
     def preorder(self, start, traversal):
         '''
         FIXME:
         Implement this function by modifying the _print functions above.
         '''
+        if start:
+            traversal += [start.value]
+            traversal = self.preorder(start.left, traversal)
+            traversal = self.preorder(start.right, traversal)
+        return traversal
 
     def inorder(self, start, traversal):
         '''
         FIXME:
         Implement this function by modifying the _print functions above.
         '''
+        if start:
+            traversal = self.inorder(start.left, traversal)
+            traversal += [start.value]
+            traversal = self.inorder(start.right, traversal)
+        return traversal
 
     def postorder(self, start, traversal):
         '''
         FIXME:
         Implement this function by modifying the _print functions above.
         '''
+        if start:
+            traversal = self.postorder(start.left, traversal)
+            traversal = self.postorder(start.right, traversal)
+            traversal += [start.value]
+        return traversal
 
     def __len__(self):
         '''
@@ -159,6 +184,14 @@ class BinaryTree():
         if a right child exists, add the result of __len__helper on the right child;
         return the sum of these three steps
         '''
+        i = 0
+        if not node:
+            return i
+        if node.left:
+            i += BinaryTree.__len__helper(node.left)
+        if node.right:
+            i += BinaryTree.__len__helper(node.right)
+        return i + 1
 
     def height(self):
         '''
@@ -171,6 +204,7 @@ class BinaryTree():
         HINT:
         See how the __len__ method calls its helper staticmethod.
         '''
+        return BinaryTree._height(self.root)
 
     @staticmethod
     def _height(node):
@@ -184,3 +218,12 @@ class BinaryTree():
         if a right child exists, calculate the _height of the right child;
         return 1 (for the current node) plus the max of the left and right _heights calculated above
         '''
+        left = -1
+        right = -1
+        if not node:
+            return -1
+        if node.left:
+            left = BinaryTree._height(node.left)
+        if node.right:
+            right = BinaryTree._height(node.right)
+        return 1 + max(left, right)
