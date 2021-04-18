@@ -63,12 +63,11 @@ class BST(BinaryTree):
         list_t2 = t2.to_list('inorder')
         for x in list_self:
             if x not in list_t2:
-                return False 
+                return False
         for i in list_t2:
             if i not in list_self:
                 return False
         return True
-        
 
     def is_bst_satisfied(self):
         '''
