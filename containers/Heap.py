@@ -197,7 +197,7 @@ class Heap(BinaryTree):
             length_node = self.__len__()
             binarynum = "{0:b}".format(length_node)[1:]
             last_val, self.root = Heap._remove_bottom_right(
-                    self.root, binarynum)
+                self.root, binarynum)
             if self.root:
                 self.root.value = last_val
             print(str(self.root))
