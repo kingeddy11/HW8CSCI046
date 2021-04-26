@@ -142,7 +142,7 @@ class BST(BinaryTree):
             print("Cannot insert value")
 
     def insert_list(self, xs):
-        '''
+The linear probability model is        '''
         Given a list xs, insert each element of xs into self.
 
         FIXME:
