@@ -18,4 +18,4 @@ This package includes:
 - Binary Trees
 - Binary Search Trees
 - AVL Trees
-- Heap Binary Trees
+- Heap Trees
